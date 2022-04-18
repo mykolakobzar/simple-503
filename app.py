@@ -20,3 +20,5 @@ def api():
     keda_metric.inc()
     return Response(MESSAGE, mimetype="text/plain",status=503)
 
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', port=8080)
