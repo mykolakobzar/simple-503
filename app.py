@@ -12,12 +12,10 @@ MESSAGE = "Return HTTP Code: 503"
 
 @app.route('/')
 def index():
-    keda_metric.inc()
     return Response(MESSAGE, mimetype="text/plain",status=503)
 
 @app.route('/api')
 def api():
-    keda_metric.inc()
     return Response(MESSAGE, mimetype="text/plain",status=503)
 
 if __name__ == '__main__':
