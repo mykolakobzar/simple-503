@@ -1,0 +1,27 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: downtime
+  labels:
+    app.kubernetes.io/name: downtime
+spec:
+  containers:
+  - name: downtime
+    image: dhforngs/simple-503:latest
+    ports:
+      - containerPort: 8080
+        name: downtime
+        
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: downtime-service
+spec:
+  selector:
+    app.kubernetes.io/name: downtime
+  ports:
+  - name: downtime
+    protocol: TCP
+    port: 8080
+    targetPort: downtime
