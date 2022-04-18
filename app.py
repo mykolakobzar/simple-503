@@ -10,12 +10,9 @@ app = Flask(__name__)
 MESSAGE = "Return HTTP Code: 503"
 
 
-@app.route('/')
-def index():
-    return Response(MESSAGE, mimetype="text/plain",status=503)
-
-@app.route('/api')
-def api():
+@app.route('/', defaults={'path': ''})
+@app.route('/<path:path>')
+def catch_all(path):
     return Response(MESSAGE, mimetype="text/plain",status=503)
 
 if __name__ == '__main__':
